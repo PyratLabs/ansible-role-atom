@@ -13,7 +13,7 @@
     baseurl: https://packagecloud.io/AtomEditor/atom/el/7/$basearch
     state: present
     enabled: true
-    gpgcheck: true
+    gpgcheck: false
     gpgkey: https://packagecloud.io/AtomEditor/atom/gpgkey
 
 - name: Ensure Atom is installed (YUM)

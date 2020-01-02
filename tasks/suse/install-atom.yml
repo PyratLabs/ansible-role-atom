@@ -7,9 +7,10 @@
 
 - name: Ensure Zypper repository file exists
   zypper_repository:
-    name: vscode
+    name: atom
     description: Atom Repository
     repo: https://packagecloud.io/AtomEditor/atom/el/7/$basearch
+    disable_gpg_check: true
     state: present
 
 - name: Ensure Atom is installed
