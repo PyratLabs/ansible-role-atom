@@ -1,0 +1,19 @@
+---
+
+- name: Ensure RPM GPG key is present
+  rpm_key:
+    key: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Ensure Zypper repository file exists
+  zypper_repository:
+    name: vscode
+    description: Atom Repository
+    repo: https://packagecloud.io/AtomEditor/atom/el/7/$basearch
+    state: present
+
+- name: Ensure Atom is installed
+  zypper:
+    name: atom
+    state: present
+    update_cache: true

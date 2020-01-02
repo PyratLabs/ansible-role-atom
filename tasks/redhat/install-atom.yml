@@ -1,0 +1,31 @@
+---
+
+- name: Ensure RPM GPG key is present
+  rpm_key:
+    key: https://packagecloud.io/AtomEditor/atom/gpgkey
+    state: present
+
+- name: Ensure YUM repository file exists
+  yum_repository:
+    name: atom
+    description: Atom Text Editor Repository
+    file: atom
+    baseurl: https://packagecloud.io/AtomEditor/atom/el/7/$basearch
+    state: present
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://packagecloud.io/AtomEditor/atom/gpgkey
+
+- name: Ensure Atom is installed (YUM)
+  yum:
+    name: atom
+    state: present
+    update_cache: true
+  when: ansible_pkg_mgr == "yum"
+
+- name: Ensure Atom is installed (DNF)
+  yum:
+    name: atom
+    state: present
+    update_cache: true
+  when: ansible_pkg_mgr == "dnf"
